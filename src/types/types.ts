@@ -1,3 +1,5 @@
+import { AriaAttributes } from 'react';
+
 export interface IUser {
   id: number;
   name: string;
@@ -7,15 +9,42 @@ export interface IUser {
   imageUrl: string;
 }
 
+export interface IFullUser extends IUser {
+  jobDescriptor: string;
+  jobArea: string;
+  jobType: string;
+  email: string;
+  ip: string;
+  company: {
+    name: string;
+    suffix: string;
+  };
+  address: {
+    zipCode: string;
+    city: string;
+    streetAddress: string;
+    country: string;
+    state: string;
+  };
+}
+
 interface IPagination {
   previousPage: number | null;
   current: number;
   nextPage: number;
-  total: number;  
+  total: number;
   pageSize: number;
 }
 
 export interface IGetUsersResponse {
   pagination: IPagination;
   list: IUser[];
+}
+
+export interface IFetchPropType {
+  page: number;
+  size: number;
+}
+export interface IgetFullUserResponse {
+  user: IFullUser;
 }

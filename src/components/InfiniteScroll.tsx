@@ -34,14 +34,13 @@ export const InfiniteScroll: React.FC<Props> = ({
 
   useEffect(() => {
     const onScroll = () => {
-      if (!isLoading && hasMoreData && isBottom(contentRef)) {
-        
+      if (hasMoreData && isBottom(contentRef)) {
         onBottomHit();
       }
     };
     document.addEventListener('scroll', onScroll);
     return () => document.removeEventListener('scroll', onScroll);
-  }, [onBottomHit, isLoading, hasMoreData]);
+  }, [onBottomHit, hasMoreData]);
 
   return <div ref={contentRef}>{children}</div>;
 };
