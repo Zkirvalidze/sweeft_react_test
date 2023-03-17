@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { fetchUser, fetchUsers } from '../api/client';
-import { IFullUser, IUser } from '../types/types';
+import { fetchFriends, fetchUser, fetchUsers } from '../api/client';
+import { IFullUser, IGetUsersResponse, IUser } from '../types/types';
 import UserInfo from './FullUser';
 import FullUser from './FullUser';
 import { InfiniteScroll } from './InfiniteScroll';
@@ -13,8 +13,14 @@ const ListItems = () => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [fullUser, setFullUser] = useState<IFullUser | null>(null);
+  const [activeUserId, setActiveUserId] = useState<number>();
+  const [friends, setFriends] = useState<IUser[]>([]);
 
   const handleFetchUser = (id: number) => {
+    if (activeUserId === id) {
+      return;
+    }
+    setActiveUserId(id);
     fetchUser(id).then((data) => setFullUser(data));
   };
   const hasMoreData = users.length < 1274;
@@ -29,7 +35,13 @@ const ListItems = () => {
       setLoading(false);
     }, 500);
   };
-  console.log(loading);
+  const handleFetchFriends = (id: number) => {
+    console.log(id, 'im woeking');
+    fetchFriends(page, NUMBERS_PER_PAGE, id).then((data) => {
+      setFriends(data.list);
+    });
+  };
+
   return (
     <InfiniteScroll
       hasMoreData={hasMoreData}
@@ -37,12 +49,23 @@ const ListItems = () => {
       onBottomHit={loadMoreNumbers}
       loadOnMount={true}
     >
-      <main>
-        {fullUser && <UserInfo user={fullUser}/>}
-        <div className="container grid grid-cols-4 mx-auto max-w-7xl">
+      <main className="container max-w-7xl mx-auto ">
+        {fullUser && (
+          <UserInfo
+            user={fullUser}
+            handleFetchUser={handleFetchUser}
+            handleFetchFriends={handleFetchFriends}
+            friends={friends}
+          />
+        )}
+        <div className="container grid grid-cols-4  max-w-7xl">
           {users.length > 0 &&
-            users.map((user) => (
-              <ListItem user={user} handleFetchUser={handleFetchUser} />
+            users.map((user, index) => (
+              <ListItem
+                user={user}
+                key={index}
+                handleFetchUser={handleFetchUser}
+              />
             ))}
         </div>
       </main>

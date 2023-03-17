@@ -30,7 +30,7 @@ export const fetchFriends = async (
   userId: number
 ): Promise<IGetUsersResponse> => {
   try {
-    const res = await client.get(`user/friends/${userId}/${page}/${size}`);
+    const res = await client.get(`user/${userId}/friends/${page}/${size}`);
     return res.data;
   } catch (err) {
     throw err;
