@@ -1,8 +1,6 @@
 import axios from 'axios';
 import {
-  IFullUser,
-  IgetFullUserResponse,
-  IGetUsersResponse,
+  IGetUsersResponse, IUserDetails,
 } from '../types/types';
 
 const client = axios.create({
@@ -37,7 +35,7 @@ export const fetchFriends = async (
   }
 };
 
-export const fetchUser = async (userId: number): Promise<IFullUser> => {
+export const fetchUser = async (userId: number): Promise<IUserDetails> => {
   try {
     const res = await client.get(`user/${userId}`);
     return res.data;

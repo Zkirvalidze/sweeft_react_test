@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 type Props = {
-  onBottomHit: () => void;
+  onBottomHit: Function;
   isLoading: boolean;
   hasMoreData: boolean;
   loadOnMount: boolean;

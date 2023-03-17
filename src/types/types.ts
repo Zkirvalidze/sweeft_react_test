@@ -1,5 +1,3 @@
-import { AriaAttributes } from 'react';
-
 export interface IUser {
   id: number;
   name: string;
@@ -9,7 +7,7 @@ export interface IUser {
   imageUrl: string;
 }
 
-export interface IFullUser extends IUser {
+export interface IUserDetails extends IUser {
   jobDescriptor: string;
   jobArea: string;
   jobType: string;
@@ -46,5 +44,9 @@ export interface IFetchPropType {
   size: number;
 }
 export interface IgetFullUserResponse {
-  user: IFullUser;
+  user: IUserDetails;
 }
+
+export type IParamsWithId = {
+  id: string;
+};
