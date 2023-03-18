@@ -43,7 +43,8 @@ const UserFriendList: React.FC = () => {
         onBottomHit={() => handleFetchFriends(+id!)}
         loadOnMount={false}
       >
-        <div className="user-list container grid grid-cols-4  max-w-7xl">
+        <h1 className='font-bold text-2xl my-4'>Friends</h1>
+        <div className="user-list container grid grid-cols-2 md:grid-cols-4 gap-4 max-w-7xl mx-auto">
           {friends.length > 0 &&
             friends.map((friend, index) => (
               <Link key={index} to={'/users/' + friend.id}>

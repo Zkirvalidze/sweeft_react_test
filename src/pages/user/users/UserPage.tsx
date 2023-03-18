@@ -25,7 +25,7 @@ const UserPage: FC = () => {
 
   return (
     <>
-      <section className="user-page">
+      <section className="user-page mt-5">
         <InfiniteScroll
           hasMoreData={hasMoreData}
           isLoading={isLoadingUsers}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
 
 /* Lazy loaded pages */
 const UsersPage = React.lazy(() => import('./pages/user/users/UserPage'));
@@ -11,7 +10,7 @@ const UserDetailedPage = React.lazy(
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <div className="w-[80vw] mx-auto">
       <Routes>
         <Route
           index
@@ -31,6 +30,6 @@ export default function App() {
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 }

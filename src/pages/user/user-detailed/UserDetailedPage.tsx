@@ -22,8 +22,7 @@ const UserDetailedPage: FC = () => {
   }, [id]);
 
   return (
-    <div>
-      <h1>User Details page</h1>
+    <div className="container max-w-7xl mx-auto">
       {activeUserInfo && (
         <div>
           <UserInfo user={activeUserInfo} />

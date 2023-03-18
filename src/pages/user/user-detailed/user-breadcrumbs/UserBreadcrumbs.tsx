@@ -30,12 +30,17 @@ const UserBreadcrumbs: FC<IProps> = ({ user }) => {
   }, [user]);
 
   return (
-    <div>
+    <ul className="flex gap-3">
       {urlTree.length > 0 &&
         urlTree.map((item, i) => (
-          <Link key={i} to={'/users/' + item.id}>{item.fullName}</Link>
+          <li key={i}>
+            <Link className="text-blue-500" to={'/users/' + item.id}>
+              {item.fullName}
+              {urlTree.length !== i + 1 && <span className="ml-2">&#62;</span>}
+            </Link>
+          </li>
         ))}
-    </div>
+    </ul>
   );
 };
 

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Loader from './loader/Loader';
 
 type Props = {
   onBottomHit: Function;
@@ -42,5 +43,14 @@ export const InfiniteScroll: React.FC<Props> = ({
     return () => document.removeEventListener('scroll', onScroll);
   }, [onBottomHit, hasMoreData]);
 
-  return <div ref={contentRef}>{children}</div>;
+  return (
+    <>
+      {isLoading && (
+        <div className='fixed top-[80%] left-[50%]'>
+          <Loader />
+        </div>
+      )}
+      <div ref={contentRef}>{children}</div>
+    </>
+  );
 };

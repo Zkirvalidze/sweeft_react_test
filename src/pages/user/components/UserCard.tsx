@@ -6,14 +6,15 @@ interface IProps {
 
 const UserCard: React.FC<IProps> = ({ user }) => {
   return (
-    <div className=" border-black h-[300px]  p-4 border-solid border-2 cursor-pointer">
-      <img src={`${user.imageUrl}?${user.id}`} alt="user image" />
-      <div>
-        <p>
+    <div className="  h-[300px]  cursor-pointer shadow-lg ">
+      <img src={`${user.imageUrl}?${user.id}`} alt="user image" className='rounded-md ' />
+      <div className='p-2'>
+        <p className="font-bold 2">
           {user.prefix}
           {user.name}
           {user.lastName}
         </p>
+        <p>{user.title}</p>
       </div>
     </div>
   );
